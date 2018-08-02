@@ -1,0 +1,33 @@
+version: "2"
+
+services:
+    odoo:
+        build: .
+        container_name: odoo-14.04
+        ports:
+            - "8069:8069"
+        command: bash -c "odoo_run"
+        links:
+            - db:db
+        depends_on:
+            - db
+        environment:
+            PASSWORD_DB: "odoodev"
+            USER_DB: "odoodev"
+            NAME_DB: "odoodev"
+            HOST_DB: "db"
+
+    db:
+        image: postgres:9.3
+        volumes_from:
+            - data
+        environment:
+            POSTGRES_PASSWORD: "odoodev"
+            POSTGRES_USER: "odoodev"
+            POSTGRES_DB: "odoodev"
+
+    data:
+        image: postgres:9.3
+        volumes:
+            - /var/lib/postgresql/data
+        command: "true"

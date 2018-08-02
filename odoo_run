@@ -1,0 +1,12 @@
+#!/bin/bash
+args=("$@")
+if [[ "$@" != '' ]]; then
+    for ((i=0; i < $#; i++))
+    {
+        if [[ ${args[$i]} == '-h' ]]; then
+            $ODOO_CORE_DICT/odoo.py -h
+        fi
+    }
+else
+    $ODOO_CORE_DICT/odoo.py --db_host=$HOST_DB --db_user=$USER_DB --db_password=$PASSWORD_DB
+fi
