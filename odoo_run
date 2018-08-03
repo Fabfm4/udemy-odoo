@@ -7,6 +7,7 @@ if [[ "$@" != '' ]]; then
             $ODOO_CORE_DICT/odoo.py -h
         fi
     }
+    $ODOO_CORE_DICT/odoo.py --db_host=$HOST_DB --db_user=$USER_DB --db_password=$PASSWORD_DB "$@"
 else
     $ODOO_CORE_DICT/odoo.py --db_host=$HOST_DB --db_user=$USER_DB --db_password=$PASSWORD_DB
 fi
